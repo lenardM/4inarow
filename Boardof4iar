@@ -1,0 +1,74 @@
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+    int board[6][7] = {{0,0,0,0,0,0,0},
+                       {0,0,0,0,0,0,0},
+                       {0,0,0,0,0,0,0},
+                       {0,0,0,0,0,0,0},
+                       {0,0,0,0,0,0,0},
+                       {0,0,0,0,0,0,0}};
+    int plmove, turn = 1, player, i, j, k = 0;
+
+    while(true){
+        system("cls");
+        cout << "1234567" << endl;
+        cout << "_______" << endl;
+        for(i = 0; i < 6; i++){
+            for(j = 0; j < 7; j++){
+                cout << board[i][j];
+            }
+            cout << endl;
+        }
+        cin >> plmove;
+
+
+
+    if(plmove == 1 || plmove == 2 || plmove == 3 || plmove == 4 || plmove == 5 || plmove == 6 || plmove == 7){
+        if(turn % 2 == 0){
+            player = 2;
+        }
+        else{
+            player = 1;
+        }
+        turn++;
+
+        if(plmove == 1){
+            for(k = 0; board[k + 1][0] == 0 && k < 5; k++);
+            board[k][0] = player;
+        }
+
+        if(plmove == 2){
+            for(k = 0; board[k + 1][1] == 0 && k < 5; k++);
+            board[k][1] = player;
+        }
+
+        if(plmove == 3){
+            for(k = 0; board[k + 1][2] == 0 && k < 5; k++);
+            board[k][2] = player;
+        }
+        if(plmove == 4){
+            for(k = 0; board[k + 1][3] == 0 && k < 5; k++);
+            board[k][3] = player;
+        }
+        if(plmove == 5){
+            for(k = 0; board[k + 1][4] == 0 && k < 5; k++);
+            board[k][4] = player;
+        }
+        if(plmove == 6){
+            for(k = 0; board[k + 1][5] == 0 && k < 5; k++);
+            board[k][5] = player;
+        }
+        if(plmove == 7){
+            for(k = 0; board[k + 1][6] == 0 && k < 5; k++);
+            board[k][6] = player;
+        }
+
+
+
+    }
+    }
+}
