@@ -1,36 +1,38 @@
 #include <iostream>
 #include <cstdlib>
+int playerturn(int counter){
+    if(counter % 2 == 0)
+        return 1;
 
-void printBoard(int board[][7]){
-        std::cout << "1  2  3  4  5  6  7  " << std::endl;
-        std::cout << "____________________" << std::endl;
-        for(int i = 0; i < 6; i++){
-            for(int j = 0; j < 7; j++)
-                std::cout << board[i][j] << "  ";
-            std::cout << std::endl;
+        else
+            return 2;
+}
+void printboard(int gameboard[][7]){
+    system("cls");
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < 7; j++){
+            std::cout << gameboard[i][j];
         }
+        std::cout << std::endl;
+    }
 }
 
 int main(){
-    int col, turn = 1, player, k;
-    int board[6][7] = {{0,0,0,0,0,0,0},
-                       {0,0,0,0,0,0,0},
-                       {0,0,0,0,0,0,0},
-                       {0,0,0,0,0,0,0},
-                       {0,0,0,0,0,0,0},
-                       {0,0,0,0,0,0,0}};
-
-    for(;;turn++){
-        system("cls");
-        printBoard(board);
-        turn % 2 == 0 ? player = 2 : player = 1;
-        std::cout << "It is player" << player << "'s turn" << std::endl;
-        std::cout << "Select a column for your piece to drop: ";
-        std::cin >> col;
-
-        if(col > 0 && col < 8){
-            for(k = 0; board[k + 1][col-1] == 0 && k < 5; k++);
-            board[k][col-1] = player;
+     int counter = 2, player, plmove, i = 0;
+     int gameboard[6][7] = {{0,0,0,0,0,0,0},
+                          {0,0,0,0,0,0,0},
+                          {0,0,0,0,0,0,0},
+                          {0,0,0,0,0,0,0},
+                          {0,0,0,0,0,0,0},
+                          {0,0,0,0,0,0,0}};
+    while(true){
+        printboard(gameboard);
+        std::cin >> plmove;
+        if(plmove > 0 && plmove < 8){
+        player = playerturn(counter);
+        for(i = 0;gameboard[i + 1][plmove - 1] == 0 && i < 5; i++);
+        gameboard[i][plmove - 1] = player;
+        counter++;
         }
     }
 }
