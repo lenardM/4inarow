@@ -4,8 +4,38 @@ int playerturn(int counter){
     if(counter % 2 == 0)
         return 1;
 
-        else
-            return 2;
+    else
+        return 2;
+}
+void checkwinH(int gameboard[][7]){
+    int score = 0;
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < 7; j++){
+            if(gameboard[i][j] == 1){
+                score++;
+                if(score == 4){
+                    std::cout << "player 1 win" << std::endl;
+                    while(true);
+                }
+            }
+        }
+        score = 0;
+    }
+}
+void checkwinV(int gameboard[][7]){
+    int score = 0;
+    for(int i = 0; i < 7; i++){
+        for(int j = 0; j < 6; j++){
+            if(gameboard[j][i] == 1){
+                score++;
+                if(score == 4){
+                    std::cout << "player 1 win" << std::endl;
+                    while(true);
+                }
+            }
+        }
+        score = 0;
+    }
 }
 void printboard(int gameboard[][7]){
     system("cls");
@@ -27,6 +57,8 @@ int main(){
                           {0,0,0,0,0,0,0}};
     while(true){
         printboard(gameboard);
+        checkwinH(gameboard);
+        checkwinV(gameboard);
         std::cin >> plmove;
         if(plmove > 0 && plmove < 8){
         player = playerturn(counter);
