@@ -1,12 +1,36 @@
 #include <iostream>
 #include <cstdlib>
-int playerturn(int counter){
-    if(counter % 2 == 0)
-        return 1;
 
-    else
-        return 2;
+/*current issue: only 30:21:12:03 is checked by checkwinLU*/
+
+void checkwinLU(int gameboard[][7]){
+    int score = 0, i = 4, j = -1, x = 3;
+    bool secphase = false;
+    for(int y = 0; y < 7; y++){
+        i--;
+        j++;
+        if(gameboard[i][j] == 1){
+            score++;
+            if(score == 4){
+                std::cout << "player 1 win" << std::endl;
+                while(true);
+            }
+        }
+        else
+            score = 0;
+        if(i == 0){
+            if(secphase == false){
+                x++;}
+            i = x;
+            j = 0;
+            if(x == 5){
+                secphase = true;
+            }
+        }
+    }
 }
+
+
 void checkwinH(int gameboard[][7]){
     int score = 0;
     for(int i = 0; i < 6; i++){
@@ -18,6 +42,8 @@ void checkwinH(int gameboard[][7]){
                     while(true);
                 }
             }
+            else
+                score = 0;
         }
         score = 0;
     }
@@ -33,6 +59,8 @@ void checkwinV(int gameboard[][7]){
                     while(true);
                 }
             }
+            else
+                score = 0;
         }
         score = 0;
     }
@@ -59,9 +87,10 @@ int main(){
         printboard(gameboard);
         checkwinH(gameboard);
         checkwinV(gameboard);
+        checkwinLU(gameboard);
         std::cin >> plmove;
         if(plmove > 0 && plmove < 8){
-        player = playerturn(counter);
+        counter % 2 == 0 ? player = 1 :player = 2;
         for(i = 0;gameboard[i + 1][plmove - 1] == 0 && i < 5; i++);
         gameboard[i][plmove - 1] = player;
         counter++;
