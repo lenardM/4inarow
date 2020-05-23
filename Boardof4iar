@@ -1,15 +1,15 @@
 #include <iostream>
 #include <cstdlib>
-void checkwinLD(int gameboard[][7]){
+void checkwinLD(int gameboard[][7], int p){
     int score = 0, i = 1, j = -1, w = 5, x = 1, z = -1;
     bool secphase = false;
     for(int y = 0; y < 32; y++){
         i++;
         j++;
-        if(gameboard[i][j] == 1){
+        if(gameboard[i][j] == p){
             score++;
             if(score == 4){
-            std::cout << "player1 win" << std::endl;
+            std::cout << "player " << p << " win" << std::endl;
             while(true);
             }
         }
@@ -30,16 +30,16 @@ void checkwinLD(int gameboard[][7]){
     }
 
 }
-void checkwinLU(int gameboard[][7]){
+void checkwinLU(int gameboard[][7], int p){
     int score = 0, i = 4, j = -1, w = 0, x = 4, z = -1;
     bool secphase = false;
     for(int y = 0; y < 32; y++){
         i--;
         j++;
-        if(gameboard[i][j] == 1){
+        if(gameboard[i][j] == p){
             score++;
             if(score == 4){
-                std::cout << "player 1 win" << std::endl;
+                std::cout << "player " << p << " win" << std::endl;
                 while(true);
             }
         }
@@ -61,14 +61,14 @@ void checkwinLU(int gameboard[][7]){
 }
 
 
-void checkwinH(int gameboard[][7]){
+void checkwinH(int gameboard[][7], int p){
     int score = 0;
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < 7; j++){
-            if(gameboard[i][j] == 1){
+            if(gameboard[i][j] == p){
                 score++;
                 if(score == 4){
-                    std::cout << "player 1 win" << std::endl;
+                    std::cout << "player " << " win" << std::endl;
                     while(true);
                 }
             }
@@ -78,14 +78,14 @@ void checkwinH(int gameboard[][7]){
         score = 0;
     }
 }
-void checkwinV(int gameboard[][7]){
+void checkwinV(int gameboard[][7], int p){
     int score = 0;
     for(int i = 0; i < 7; i++){
         for(int j = 0; j < 6; j++){
-            if(gameboard[j][i] == 1){
+            if(gameboard[j][i] == p){
                 score++;
                 if(score == 4){
-                    std::cout << "player 1 win" << std::endl;
+                    std::cout << "player " << p << " win" << std::endl;
                     while(true);
                 }
             }
@@ -115,10 +115,14 @@ int main(){
                           {0,0,0,0,0,0,0}};
     while(true){
         printboard(gameboard);
-        checkwinH(gameboard);
-        checkwinV(gameboard);
-        checkwinLU(gameboard);
-        checkwinLD(gameboard);
+        checkwinH(gameboard, 1);
+        checkwinV(gameboard, 1);
+        checkwinLU(gameboard, 1);
+        checkwinLD(gameboard, 1);
+        checkwinH(gameboard, 2);
+        checkwinV(gameboard, 2);
+        checkwinLU(gameboard, 2);
+        checkwinLD(gameboard, 2);
         std::cin >> plmove;
         if(plmove > 0 && plmove < 8){
         counter % 2 == 0 ? player = 1 :player = 2;
